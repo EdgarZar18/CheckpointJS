@@ -35,6 +35,7 @@ var Solicitud = function(nombre, correo, telefono, tipoCliente, numeroAcciones){
     this.numeroAcciones = numeroAcciones;
 }
 
+
 var PrecioAccion = function(tipoCliente, numeroAcciones, precioAlCliente, descuentoAdicional) {
     Solicitud.call(this, tipoCliente, numeroAcciones);
     this.precioAlCliente = function(){
@@ -46,8 +47,7 @@ var PrecioAccion = function(tipoCliente, numeroAcciones, precioAlCliente, descue
         precioAlCliente = precioEmpleados;
       } else {
         precioAlCliente = 'no disponible'
-      }
-    };
+      }};
     this.descuentoAdicional = function(){
     if (numeroAcciones >= 1000) {
         descuentoAdicional = descuentoCompraMayor1000;
@@ -55,8 +55,7 @@ var PrecioAccion = function(tipoCliente, numeroAcciones, precioAlCliente, descue
         descuentoAdicional = descuentoCompraMayor2000;
       } else {
         descuentoAdicional = 0;
-      } 
-    };
+      }};
 }
 
 var PrecioFinal = function(nombre,precioAlCliente,descuentoAdicional,precioReal) {
@@ -70,18 +69,14 @@ var PrecioFinal = function(nombre,precioAlCliente,descuentoAdicional,precioReal)
 }
 
 
-PrecioFinal.prototype.toString = function registroToString(){
-    var val=  this.nombre + " "+ this.precioAlCliente + " " + this.descuentoAdicional + " " + this.precioReal;
-    return val;
-}
 
-function registrarNuevoCliente(){
+function registrarNuevaSolicitud(){
     document.getElementById("name").innerHTL ="";
     var nombre = document.getElementById("nombre").value;
-    var edad = document.getElementById("correo").value;
+    var correo = document.getElementById("correo").value;
     var telefono = document.getElementById("telefono").value;
-    var sucursal = document.getElementById("tipoCliente").value;
-    var tipo = document.getElementById("numeroAcciones").value;
+    var tipoCliente = document.getElementById("tipoCliente").value;
+    var numeroAcciones = document.getElementById("numeroAcciones").value;
     event.preventDefault();
     registros.push(new Solicitud(nombre, correo, telefono, tipoCliente, numeroAcciones));
 
@@ -94,10 +89,10 @@ function registrarNuevoCliente(){
 
 const form = document.getElementById('registro');
 const log = document.getElementById('log');
-form.addEventListener('submit', registrarNuevoCliente);
+form.addEventListener('submit', registrarNuevaSolicitud);
 
 
-
-
-
-
+PrecioFinal.prototype.toString = function precioFinalToString() {
+    var informacionSolicitud =  this.nombre + " "+ this.precioAlCliente + " " + this.descuentoAdicional + " " + this.precioReal;
+    return informacionSolicitud;
+}
